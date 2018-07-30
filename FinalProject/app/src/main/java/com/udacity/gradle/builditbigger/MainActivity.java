@@ -1,19 +1,43 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.fabianbleile.javajokes.Joker;
+import com.fabianbleile.jokeractivity.JokerActivity;
+import com.udacity.gradle.builditbigger.free.AdMobActivity;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity{
+
+    Joker mJoker = new Joker();
+    private ProgressBar mProgressBar;
+    EndpointsAsyncTask.AsyncResponse asyncResponse = new EndpointsAsyncTask.AsyncResponse() {
+        @Override
+        public void onProcessFinish(String result) {
+            Toast.makeText(getApplicationContext(), "Here I am", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), JokerActivity.class);
+            intent.putExtra(JokerActivity.EXT_JOKE, result);
+            startActivity(intent);
+            mProgressBar.setVisibility(View.GONE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mProgressBar = findViewById(R.id.progressBar);
+        mProgressBar.setVisibility(View.GONE);
     }
 
 
@@ -40,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        mProgressBar.setVisibility(View.VISIBLE);
+        startActivity(new Intent(this, AdMobActivity.class));
+        Toast.makeText(this, "" + mJoker.getJoke(), Toast.LENGTH_SHORT).show();
+        new EndpointsAsyncTask(this,asyncResponse).execute(new Pair<Context, String>(this, "Fabi"));
     }
-
-
 }
