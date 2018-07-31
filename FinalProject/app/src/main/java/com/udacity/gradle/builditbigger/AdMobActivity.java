@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger.free;
+package com.udacity.gradle.builditbigger;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;

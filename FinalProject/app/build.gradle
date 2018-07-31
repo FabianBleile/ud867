@@ -38,7 +38,6 @@ android {
         free {
             dimension "money"
             applicationId "com.udacity.gradle.builditbigger.free"
-            buildConfigField "int", "FOO", "42"
         }
         paid {
             dimension "money"

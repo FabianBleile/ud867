@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.fabianbleile.javajokes.Joker;
 import com.fabianbleile.jokeractivity.JokerActivity;
-import com.udacity.gradle.builditbigger.free.AdMobActivity;
 
 
 public class MainActivity extends AppCompatActivity{

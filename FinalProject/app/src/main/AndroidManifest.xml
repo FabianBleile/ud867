@@ -35,7 +35,7 @@
             android:theme="@android:style/Theme.Translucent" />
 
         <activity
-            android:name=".free.AdMobActivity"
+            android:name=".AdMobActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:parentActivityName=".MainActivity" />
