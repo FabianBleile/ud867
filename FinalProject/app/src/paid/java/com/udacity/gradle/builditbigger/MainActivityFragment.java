@@ -1,0 +1,62 @@
+package com.udacity.gradle.builditbigger;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.fabianbleile.javajokes.Joker;
+import com.fabianbleile.jokeractivity.JokerActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class MainActivityFragment extends Fragment {
+
+    Joker mJoker = new Joker();
+    private static ProgressBar mProgressBar;
+    EndpointsAsyncTask.AsyncResponse asyncResponse = new EndpointsAsyncTask.AsyncResponse() {
+        @Override
+        public void onProcessFinish(String result) {
+            Toast.makeText(getActivity(), "Here I am", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), JokerActivity.class);
+            intent.putExtra(JokerActivity.EXT_JOKE, result);
+            startActivity(intent);
+            mProgressBar.setVisibility(View.GONE);
+        }
+    };
+
+    public MainActivityFragment() {
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_main, container, false);
+
+        mProgressBar = root.findViewById(R.id.progressBar);
+        mProgressBar.setVisibility(View.GONE);
+
+        Button bt_tellJoke = root.findViewById(R.id.bt_tell_joke);
+        bt_tellJoke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mProgressBar.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), "" + mJoker.getJoke(), Toast.LENGTH_SHORT).show();
+                new EndpointsAsyncTask(getActivity(), asyncResponse).execute(new Pair<Context, String>(getActivity(), "Fabi"));
+            }
+        });
+
+        return root;
+    }
+}

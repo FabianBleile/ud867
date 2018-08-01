@@ -4,10 +4,6 @@
     <string name="button_text">Tell Joke</string>
     <string name="action_settings">Settings</string>
 
-    // Ads, banner
+
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_loading_tv">Ad is loading</string>
-    <string name="TEST_AD_UNIT_ID" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="TEST_ADMOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="addTestDevice" translatable="false">CC5F2C72DF2B356BBF0DA198</string>
 </resources>
