@@ -53,7 +53,7 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View view) {
                 mProgressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(getActivity(), "" + mJoker.getJoke(), Toast.LENGTH_SHORT).show();
-                new EndpointsAsyncTask(getActivity(), asyncResponse).execute(new Pair<Context, String>(getActivity(), "Fabi"));
+                new EndpointsAsyncTask(asyncResponse).execute();
             }
         });
 
