@@ -60,7 +60,7 @@ public class MainActivityFragment extends Fragment {
         bt_tellJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdMobActivity.class));
+                //startActivity(new Intent(getActivity(), AdMobActivity.class));
                 mProgressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(getActivity(), "" + mJoker.getJoke(), Toast.LENGTH_SHORT).show();
                 new EndpointsAsyncTask(asyncResponse).execute();
