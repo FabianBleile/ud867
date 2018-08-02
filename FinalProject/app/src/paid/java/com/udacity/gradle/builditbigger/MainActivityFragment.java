@@ -1,10 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +12,6 @@ import android.widget.Toast;
 
 import com.fabianbleile.javajokes.Joker;
 import com.fabianbleile.jokeractivity.JokerActivity;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 
 /**
@@ -28,11 +24,15 @@ public class MainActivityFragment extends Fragment {
     EndpointsAsyncTask.AsyncResponse asyncResponse = new EndpointsAsyncTask.AsyncResponse() {
         @Override
         public void onProcessFinish(String result) {
-            Toast.makeText(getActivity(), "Here I am", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), JokerActivity.class);
             intent.putExtra(JokerActivity.EXT_JOKE, result);
             startActivity(intent);
             mProgressBar.setVisibility(View.GONE);
+        }
+
+        @Override
+        public void onError(String errorString) {
+
         }
     };
 
@@ -52,7 +52,6 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mProgressBar.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(), "" + mJoker.getJoke(), Toast.LENGTH_SHORT).show();
                 new EndpointsAsyncTask(asyncResponse).execute();
             }
         });

@@ -42,8 +42,9 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
         }
 
         try {
-            return myApiService.sayHi().execute().getData();
+            return myApiService.getJoke().execute().getData();
         } catch (IOException e) {
+            delegate.onError(e.getMessage());
             return e.getMessage();
         }
     }
@@ -55,5 +56,6 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     public interface AsyncResponse {
         public void onProcessFinish(String output);
+        public void onError(String errorString);
     }
 }

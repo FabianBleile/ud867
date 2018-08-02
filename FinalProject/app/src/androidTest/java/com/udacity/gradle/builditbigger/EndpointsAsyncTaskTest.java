@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class EndpointsAsyncTaskTest extends AndroidTestCase{
 
     String mOutput = null;
+    String mError = null;
     CountDownLatch signal =  new CountDownLatch(1);
 
     public void testAlbumGetTask() throws InterruptedException {
@@ -23,11 +24,17 @@ public class EndpointsAsyncTaskTest extends AndroidTestCase{
                 mOutput = output;
                 signal.countDown();
             }
+            @Override
+            public void onError(String errorString) {
+                mError = errorString;
+                signal.countDown();
+            }
         });
         task.execute();
         signal.await();
 
         assertFalse(TextUtils.isEmpty(mOutput));
+        assertTrue(mError == null);
 
     }
 

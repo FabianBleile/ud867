@@ -34,6 +34,11 @@ public class MainActivityFragment extends Fragment {
             startActivity(intent);
             mProgressBar.setVisibility(View.GONE);
         }
+
+        @Override
+        public void onError(String errorString) {
+
+        }
     };
 
     public MainActivityFragment() {
@@ -62,7 +67,6 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View view) {
                 //startActivity(new Intent(getActivity(), AdMobActivity.class));
                 mProgressBar.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(), "" + mJoker.getJoke(), Toast.LENGTH_SHORT).show();
                 new EndpointsAsyncTask(asyncResponse).execute();
             }
         });
